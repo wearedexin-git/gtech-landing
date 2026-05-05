@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G-TECH - Progettazione e Manutenzione Impianti</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Caricamento Font Google (Orbitron e Quantico) */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Quantico:ital,wght@0,400;0,700;1,400&display=swap');
+
+        :root {
+            --bg-color: #679EB2;
+            --dark-color: #1F201D;
+            --form-bg: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Quantico', sans-serif;
+            background-color: var(--bg-color);
+            color: white;
+            margin: 0;
+        }
+
+        h1, h2, .font-title {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .max-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Separatore obliquo */
+        .slash {
+            color: var(--dark-color);
+            font-size: 1.5rem;
+            margin: 0 1.5rem;
+            font-weight: bold;
+            display: inline-block;
+            transform: rotate(20deg);
+        }
+
+        /* Styling Input */
+        .form-input {
+            width: 100%;
+            background-color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 15px;
+            color: var(--dark-color);
+            outline: none;
+        }
+
+        .form-label {
+            color: var(--dark-color);
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        /* Immagine con angoli arrotondati come da design */
+        .img-mask {
+            border-radius: 8px;
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .slash { margin: 0 0.5rem; }
+            .header-text { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- HEADER / HERO -->
+    <header class="py-10 text-center max-container">
+        <!-- Logo -->
+        <div class="mb-8">
+            <img src="assets/logo-gtech.svg" alt="G-TECH" class="mx-auto w-72 md:w-96">
+        </div>
+
+        <!-- Slogan con slash -->
+        <div class="flex flex-wrap justify-center items-center font-title text-base md:text-xl mb-10 tracking-widest header-text">
+            <span>Progettare</span>
+            <span class="slash">/</span>
+            <span>Realizzare</span>
+            <span class="slash">/</span>
+            <span>Gestire impianti tecnologici</span>
+        </div>
+
+        <!-- Pulsanti PDF -->
+        <div class="flex flex-col md:flex-row justify-center gap-4 mb-16">
+            <a href="assets/brochure-mondo-gtech.pdf" target="_blank" class="bg-[#1F201D] text-white px-8 py-3 rounded text-sm hover:bg-opacity-80 transition font-bold uppercase tracking-tighter">
+                Scarica la brochure sul mondo G-TECH
+            </a>
+            <a href="assets/servizi-manutenzione.pdf" target="_blank" class="bg-[#1F201D] text-white px-8 py-3 rounded text-sm hover:bg-opacity-80 transition font-bold uppercase tracking-tighter">
+                Scopri i nostri servizi sulla manutenzione
+            </a>
+        </div>
+
+        <!-- Titolo Sezione Form -->
+        <div class="text-left flex items-start gap-4 mb-2">
+             <span class="text-4xl">↘</span>
+             <div>
+                <h2 class="text-2xl md:text-4xl font-bold leading-tight">Interveniamo dove serve, prima che serva</h2>
+                <p class="mt-2 text-sm md:text-base font-light">Entra in contatto con il nostro team per ricevere un preventivo sull'assistenza ai tuoi impianti.</p>
+             </div>
+        </div>
+    </header>
+
+    <!-- FORM SECTION -->
+    <main class="max-container w-full mb-20">
+        <div class="bg-[#e0e0e0] p-6 md:p-8 rounded-xl shadow-lg flex flex-col md:flex-row gap-8">
+            
+            <!-- Immagine Tecnico -->
+            <div class="w-full md:w-2/5">
+                <img src="assets/tecnico-manutenzione.jpg" alt="Tecnico G-TECH al lavoro" class="img-mask">
+            </div>
+
+            <!-- Form -->
+            <div class="w-full md:w-3/5">
+                <form id="contactForm" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="form-label">Nome / Cognome</label>
+                            <input type="text" id="nome" required class="form-input">
+                        </div>
+                        <div>
+                            <label class="form-label">Città di provenienza</label>
+                            <input type="text" id="citta" required class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="form-label">Recapito telefonico</label>
+                            <input type="tel" id="telefono" required class="form-input">
+                        </div>
+                        <div>
+                            <label class="form-label">E-mail</label>
+                            <input type="email" id="email" required class="form-input">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="form-label">Messaggio</label>
+                        <textarea id="messaggio" rows="4" class="form-input" placeholder="Scrivi qui..."></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-[#1F201D] text-white py-3 rounded-md font-bold uppercase hover:bg-opacity-90 transition mt-4">
+                        Invia
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mt-auto py-8 bg-transparent border-t border-white border-opacity-20">
+        <div class="max-container flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] md:text-xs text-white uppercase tracking-wider">
+            
+            <div class="flex items-center gap-4">
+                <img src="assets/logo-dnv.svg" alt="DNV ESCO" class="h-12">
+            </div>
+
+            <div class="text-center md:text-left leading-loose">
+                G-TECH s.r.l con socio unico  |  Sede legale Via G.Porzio, Centro Direzionale di Napoli is.E3 - 80143 - Napoli  |  P.IVA 10652241216  |  <a href="https://gtechsrl.it" class="hover:underline">gtechsrl.it</a>
+            </div>
+
+            <div>
+                <a href="https://tua-privacy-policy.it" target="_blank" class="hover:underline">privacy policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LOGICA FORM -->
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validazione base
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const telefono = document.getElementById('telefono').value;
+            const citta = document.getElementById('citta').value;
+
+            if(nome && email && telefono && citta) {
+                // Qui si invierebbero i dati al server
+                // Per ora simuliamo il successo e reindirizziamo
+                window.location.href = 'thank-you.html';
+            } else {
+                alert('Per favore, compila tutti i campi obbligatori.');
+            }
+        });
+    </script>
+</body>
+</html>
