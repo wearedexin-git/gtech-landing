@@ -118,32 +118,32 @@
 
             <!-- Form -->
             <div class="w-full md:w-3/5">
-                <form id="contactForm" class="space-y-4">
+                <form action="send_email.php" method="POST" class="space-y-4">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="form-label">Nome / Cognome</label>
-                            <input type="text" id="nome" required class="form-input">
+                            <label class="form-label" for="nome">Nome / Cognome</label>
+                            <input type="text" id="nome" name="nome" required class="form-input">
                         </div>
                         <div>
-                            <label class="form-label">Città di provenienza</label>
-                            <input type="text" id="citta" required class="form-input">
+                            <label class="form-label" for="citta">Città di provenienza</label>
+                            <input type="text" id="citta" name="citta" required class="form-input">
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="form-label">Recapito telefonico</label>
-                            <input type="tel" id="telefono" required class="form-input">
+                            <label class="form-label" for="telefono">Recapito telefonico</label>
+                            <input type="tel" id="telefono" name="telefono" required class="form-input">
                         </div>
                         <div>
-                            <label class="form-label">E-mail</label>
-                            <input type="email" id="email" required class="form-input">
+                            <label class="form-label" for="email">E-mail</label>
+                            <input type="email" id="email" name="email" required class="form-input">
                         </div>
                     </div>
 
                     <div>
-                        <label class="form-label">Messaggio</label>
-                        <textarea id="messaggio" rows="4" class="form-input" placeholder="Scrivi qui..."></textarea>
+                        <label class="form-label" for="messaggio">Messaggio</label>
+                        <textarea id="messaggio" name="messaggio" rows="4" class="form-input" placeholder="Scrivi qui..."></textarea>
                     </div>
 
                     <button type="submit" class="w-full bg-[#1F201D] text-white py-3 rounded-md font-bold hover:bg-opacity-90 transition mt-4">
@@ -162,31 +162,12 @@
                 <img src="assets/logo-dnv.svg" alt="DNV ESCO" class="h-12">
             </div>
 
-            <div class="text-center xl:text-left xl:whitespace-nowrap w-full">
-                G-TECH s.r.l con socio unico &nbsp;|&nbsp; Sede legale Via G.Porzio, Centro Direzionale di Napoli is.E3 - 80143 - Napoli &nbsp;|&nbsp; P.IVA 10652241216 &nbsp;|&nbsp; 340 260 9977 &nbsp;|&nbsp; <a href="mailto:info@gtech.it" class="hover:underline">info@gtech.it</a> &nbsp;|&nbsp; <a href="https://gtechsrl.it" class="hover:underline">gtechsrl.it</a> &nbsp;|&nbsp; <a href="https://tua-privacy-policy.it" target="_blank" class="hover:underline">privacy policy</a>
+            <div class="text-center xl:text-left leading-relaxed">
+                G-TECH s.r.l con socio unico &nbsp;|&nbsp; Sede legale Via G.Porzio, Centro Direzionale di Napoli is.E3 - 80143 - Napoli &nbsp;|&nbsp; P.IVA 10652241216 &nbsp;|&nbsp; Commerciale 340 260 9977 &nbsp;|&nbsp; Assistenza 345 038 8189 &nbsp;|&nbsp; <a href="mailto:info@gtechsrl.it" class="hover:underline">info@gtechsrl.it</a> &nbsp;|&nbsp; <a href="https://gtechsrl.it" class="hover:underline">gtechsrl.it</a> &nbsp;|&nbsp; <a href="assets/privacy-policy.pdf" target="_blank" class="hover:underline">privacy policy</a>
             </div>
         </div>
     </footer>
 
-    <!-- LOGICA FORM -->
-    <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Validazione base
-            const nome = document.getElementById('nome').value;
-            const email = document.getElementById('email').value;
-            const telefono = document.getElementById('telefono').value;
-            const citta = document.getElementById('citta').value;
-
-            if(nome && email && telefono && citta) {
-                // Qui si invierebbero i dati al server
-                // Per ora simuliamo il successo e reindirizziamo
-                window.location.href = 'thank-you.html';
-            } else {
-                alert('Per favore, compila tutti i campi obbligatori.');
-            }
-        });
-    </script>
+    <!-- Il Form ora viene gestito dal backend PHP (send_email.php) -->
 </body>
 </html>
