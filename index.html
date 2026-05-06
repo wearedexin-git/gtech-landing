@@ -25,7 +25,6 @@
 
         h1, h2, .font-title {
             font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
         }
 
         .max-container {
@@ -49,7 +48,7 @@
             width: 100%;
             background-color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             padding: 10px 15px;
             color: var(--dark-color);
             outline: none;
@@ -62,13 +61,7 @@
             font-size: 0.9rem;
         }
 
-        /* Immagine con angoli arrotondati come da design */
-        .img-mask {
-            border-radius: 8px;
-            object-fit: cover;
-            height: 100%;
-            width: 100%;
-        }
+        /* Stili gestiti con Tailwind */
 
         @media (max-width: 768px) {
             .slash { margin: 0 0.5rem; }
@@ -86,7 +79,7 @@
         </div>
 
         <!-- Slogan con slash -->
-        <div class="flex flex-wrap justify-center items-center font-title text-base md:text-xl mb-10 tracking-widest header-text">
+        <div class="flex flex-wrap justify-center items-center text-[#1F201D] font-bold text-base md:text-xl mb-10 tracking-widest header-text">
             <span>Progettare</span>
             <span class="slash">/</span>
             <span>Realizzare</span>
@@ -96,17 +89,17 @@
 
         <!-- Pulsanti PDF -->
         <div class="flex flex-col md:flex-row justify-center gap-4 mb-16">
-            <a href="assets/brochure-mondo-gtech.pdf" target="_blank" class="bg-[#1F201D] text-white px-8 py-3 rounded text-sm hover:bg-opacity-80 transition font-bold uppercase tracking-tighter">
+            <a href="assets/brochure-mondo-gtech.pdf" target="_blank" class="bg-[#1F201D] text-white px-8 py-3 rounded-md text-sm hover:bg-opacity-80 transition font-bold tracking-tighter">
                 Scarica la brochure sul mondo G-TECH
             </a>
-            <a href="assets/servizi-manutenzione.pdf" target="_blank" class="bg-[#1F201D] text-white px-8 py-3 rounded text-sm hover:bg-opacity-80 transition font-bold uppercase tracking-tighter">
+            <a href="assets/servizi-manutenzione.pdf" target="_blank" class="bg-[#1F201D] text-white px-8 py-3 rounded-md text-sm hover:bg-opacity-80 transition font-bold tracking-tighter">
                 Scopri i nostri servizi sulla manutenzione
             </a>
         </div>
 
         <!-- Titolo Sezione Form -->
-        <div class="text-left flex items-start gap-4 mb-2">
-             <span class="text-4xl">↘</span>
+        <div class="text-left flex items-start gap-4 mb-2 text-[#1F201D]">
+             <img src="assets/freccia.svg" alt="Freccia" class="w-8 md:w-10 mt-1 md:mt-2">
              <div>
                 <h2 class="text-2xl md:text-4xl font-bold leading-tight">Interveniamo dove serve, prima che serva</h2>
                 <p class="mt-2 text-sm md:text-base font-light">Entra in contatto con il nostro team per ricevere un preventivo sull'assistenza ai tuoi impianti.</p>
@@ -119,8 +112,8 @@
         <div class="bg-[#e0e0e0] p-6 md:p-8 rounded-xl shadow-lg flex flex-col md:flex-row gap-8">
             
             <!-- Immagine Tecnico -->
-            <div class="w-full md:w-2/5">
-                <img src="assets/tecnico-manutenzione.jpg" alt="Tecnico G-TECH al lavoro" class="img-mask">
+            <div class="w-full md:w-2/5 relative min-h-[300px] md:min-h-0 rounded-lg overflow-hidden">
+                <img src="assets/tecnico-manutenzione.jpg" alt="Tecnico G-TECH al lavoro" class="absolute inset-0 w-full h-full object-cover">
             </div>
 
             <!-- Form -->
@@ -153,7 +146,7 @@
                         <textarea id="messaggio" rows="4" class="form-input" placeholder="Scrivi qui..."></textarea>
                     </div>
 
-                    <button type="submit" class="w-full bg-[#1F201D] text-white py-3 rounded-md font-bold uppercase hover:bg-opacity-90 transition mt-4">
+                    <button type="submit" class="w-full bg-[#1F201D] text-white py-3 rounded-md font-bold hover:bg-opacity-90 transition mt-4">
                         Invia
                     </button>
                 </form>
@@ -162,19 +155,15 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="mt-auto py-8 bg-transparent border-t border-white border-opacity-20">
-        <div class="max-container flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] md:text-xs text-white uppercase tracking-wider">
+    <footer class="mt-auto py-8 bg-transparent">
+        <div class="max-container flex flex-col xl:flex-row items-center justify-center xl:justify-start gap-4 text-[10px] text-[#1F201D] font-bold tracking-wider">
             
-            <div class="flex items-center gap-4">
+            <div class="flex items-center shrink-0">
                 <img src="assets/logo-dnv.svg" alt="DNV ESCO" class="h-12">
             </div>
 
-            <div class="text-center md:text-left leading-loose">
-                G-TECH s.r.l con socio unico  |  Sede legale Via G.Porzio, Centro Direzionale di Napoli is.E3 - 80143 - Napoli  |  P.IVA 10652241216  |  <a href="https://gtechsrl.it" class="hover:underline">gtechsrl.it</a>
-            </div>
-
-            <div>
-                <a href="https://tua-privacy-policy.it" target="_blank" class="hover:underline">privacy policy</a>
+            <div class="text-center xl:text-left xl:whitespace-nowrap w-full">
+                G-TECH s.r.l con socio unico &nbsp;|&nbsp; Sede legale Via G.Porzio, Centro Direzionale di Napoli is.E3 - 80143 - Napoli &nbsp;|&nbsp; P.IVA 10652241216 &nbsp;|&nbsp; 340 260 9977 &nbsp;|&nbsp; <a href="mailto:info@gtech.it" class="hover:underline">info@gtech.it</a> &nbsp;|&nbsp; <a href="https://gtechsrl.it" class="hover:underline">gtechsrl.it</a> &nbsp;|&nbsp; <a href="https://tua-privacy-policy.it" target="_blank" class="hover:underline">privacy policy</a>
             </div>
         </div>
     </footer>
