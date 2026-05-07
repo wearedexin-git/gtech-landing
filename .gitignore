@@ -1,0 +1,6 @@
+# File di configurazione sensibile
+config.php
+
+# Altri file da ignorare
+.DS_Store
+PHPMailer/
