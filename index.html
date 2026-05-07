@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,9 +24,10 @@
             margin: 0;
         }
 
-        h1, h2, .font-title {
+        h1,
+        h2,
+        .font-title {
             font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
         }
 
         .max-container {
@@ -49,7 +51,7 @@
             width: 100%;
             background-color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             padding: 10px 15px;
             color: var(--dark-color);
             outline: none;
@@ -62,20 +64,20 @@
             font-size: 0.9rem;
         }
 
-        /* Immagine con angoli arrotondati come da design */
-        .img-mask {
-            border-radius: 8px;
-            object-fit: cover;
-            height: 100%;
-            width: 100%;
-        }
+        /* Stili gestiti con Tailwind */
 
         @media (max-width: 768px) {
-            .slash { margin: 0 0.5rem; }
-            .header-text { font-size: 0.9rem; }
+            .slash {
+                margin: 0 0.5rem;
+            }
+
+            .header-text {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
+
 <body class="min-h-screen flex flex-col">
 
     <!-- HEADER / HERO -->
@@ -86,7 +88,8 @@
         </div>
 
         <!-- Slogan con slash -->
-        <div class="flex flex-wrap justify-center items-center font-title text-base md:text-xl mb-10 tracking-widest header-text">
+        <div
+            class="flex flex-wrap justify-center items-center text-[#1F201D] font-bold text-base md:text-xl mb-10 tracking-widest header-text">
             <span>Progettare</span>
             <span class="slash">/</span>
             <span>Realizzare</span>
@@ -96,64 +99,70 @@
 
         <!-- Pulsanti PDF -->
         <div class="flex flex-col md:flex-row justify-center gap-4 mb-16">
-            <a href="assets/brochure-mondo-gtech.pdf" target="_blank" class="bg-[#1F201D] text-white px-8 py-3 rounded text-sm hover:bg-opacity-80 transition font-bold uppercase tracking-tighter">
+            <a href="assets/brochure-mondo-gtech.pdf" target="_blank"
+                class="bg-[#1F201D] text-white px-8 py-3 rounded-md text-sm hover:bg-opacity-80 transition font-bold tracking-tighter">
                 Scarica la brochure sul mondo G-TECH
             </a>
-            <a href="assets/servizi-manutenzione.pdf" target="_blank" class="bg-[#1F201D] text-white px-8 py-3 rounded text-sm hover:bg-opacity-80 transition font-bold uppercase tracking-tighter">
+            <a href="assets/servizi-manutenzione.pdf" target="_blank"
+                class="bg-[#1F201D] text-white px-8 py-3 rounded-md text-sm hover:bg-opacity-80 transition font-bold tracking-tighter">
                 Scopri i nostri servizi sulla manutenzione
             </a>
         </div>
 
         <!-- Titolo Sezione Form -->
-        <div class="text-left flex items-start gap-4 mb-2">
-             <span class="text-4xl">↘</span>
-             <div>
+        <div class="text-left flex items-start gap-4 mb-2 text-[#1F201D]">
+            <img src="assets/freccia.svg" alt="Freccia" class="w-8 md:w-10 mt-1 md:mt-2">
+            <div>
                 <h2 class="text-2xl md:text-4xl font-bold leading-tight">Interveniamo dove serve, prima che serva</h2>
-                <p class="mt-2 text-sm md:text-base font-light">Entra in contatto con il nostro team per ricevere un preventivo sull'assistenza ai tuoi impianti.</p>
-             </div>
+                <p class="mt-2 text-sm md:text-base font-light">Entra in contatto con il nostro team per ricevere un
+                    preventivo sull'assistenza ai tuoi impianti.</p>
+            </div>
         </div>
     </header>
 
     <!-- FORM SECTION -->
     <main class="max-container w-full mb-20">
         <div class="bg-[#e0e0e0] p-6 md:p-8 rounded-xl shadow-lg flex flex-col md:flex-row gap-8">
-            
+
             <!-- Immagine Tecnico -->
-            <div class="w-full md:w-2/5">
-                <img src="assets/tecnico-manutenzione.jpg" alt="Tecnico G-TECH al lavoro" class="img-mask">
+            <div class="w-full md:w-2/5 relative min-h-[300px] md:min-h-0 rounded-lg overflow-hidden">
+                <img src="assets/tecnico-manutenzione.jpg" alt="Tecnico G-TECH al lavoro"
+                    class="absolute inset-0 w-full h-full object-cover">
             </div>
 
             <!-- Form -->
             <div class="w-full md:w-3/5">
-                <form id="contactForm" class="space-y-4">
+                <form action="send_email.php" method="POST" class="space-y-4">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="form-label">Nome / Cognome</label>
-                            <input type="text" id="nome" required class="form-input">
+                            <label class="form-label" for="nome">Nome / Cognome</label>
+                            <input type="text" id="nome" name="nome" required class="form-input">
                         </div>
                         <div>
-                            <label class="form-label">Città di provenienza</label>
-                            <input type="text" id="citta" required class="form-input">
+                            <label class="form-label" for="citta">Città di provenienza</label>
+                            <input type="text" id="citta" name="citta" required class="form-input">
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="form-label">Recapito telefonico</label>
-                            <input type="tel" id="telefono" required class="form-input">
+                            <label class="form-label" for="telefono">Recapito telefonico</label>
+                            <input type="tel" id="telefono" name="telefono" required class="form-input">
                         </div>
                         <div>
-                            <label class="form-label">E-mail</label>
-                            <input type="email" id="email" required class="form-input">
+                            <label class="form-label" for="email">E-mail</label>
+                            <input type="email" id="email" name="email" required class="form-input">
                         </div>
                     </div>
 
                     <div>
-                        <label class="form-label">Messaggio</label>
-                        <textarea id="messaggio" rows="4" class="form-input" placeholder="Scrivi qui..."></textarea>
+                        <label class="form-label" for="messaggio">Messaggio</label>
+                        <textarea id="messaggio" name="messaggio" rows="4" class="form-input"
+                            placeholder="Scrivi qui..."></textarea>
                     </div>
 
-                    <button type="submit" class="w-full bg-[#1F201D] text-white py-3 rounded-md font-bold uppercase hover:bg-opacity-90 transition mt-4">
+                    <button type="submit"
+                        class="w-full bg-[#1F201D] text-white py-3 rounded-md font-bold hover:bg-opacity-90 transition mt-4">
                         Invia
                     </button>
                 </form>
@@ -162,42 +171,45 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="mt-auto py-8 bg-transparent border-t border-white border-opacity-20">
-        <div class="max-container flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] md:text-xs text-white uppercase tracking-wider">
-            
-            <div class="flex items-center gap-4">
+    <footer class="mt-auto py-8 bg-transparent">
+        <div
+            class="max-container flex flex-col xl:flex-row items-center justify-center xl:justify-start gap-4 text-[10px] text-[#1F201D] font-bold tracking-wider">
+
+            <div class="flex items-center shrink-0">
                 <img src="assets/logo-dnv.svg" alt="DNV ESCO" class="h-12">
             </div>
 
-            <div class="text-center md:text-left leading-loose">
-                G-TECH s.r.l con socio unico  |  Sede legale Via G.Porzio, Centro Direzionale di Napoli is.E3 - 80143 - Napoli  |  P.IVA 10652241216  |  <a href="https://gtechsrl.it" class="hover:underline">gtechsrl.it</a>
-            </div>
-
-            <div>
-                <a href="https://tua-privacy-policy.it" target="_blank" class="hover:underline">privacy policy</a>
+            <div class="text-center xl:text-left leading-relaxed">
+                G-TECH s.r.l con socio unico &nbsp;|&nbsp; Sede legale Via G.Porzio, Centro Direzionale di Napoli is.E3
+                - 80143 - Napoli &nbsp;|&nbsp; P.IVA 10652241216 &nbsp;|&nbsp; Commerciale 340 260 9977 &nbsp;|&nbsp;
+                Assistenza 345 038 8189 &nbsp;|&nbsp; <a href="mailto:info@gtechsrl.it"
+                    class="hover:underline">info@gtechsrl.it</a> &nbsp;|&nbsp; <a href="https://gtechsrl.it"
+                    class="hover:underline">gtechsrl.it</a> &nbsp;|&nbsp; <a href="assets/privacy-policy.pdf"
+                    target="_blank" class="hover:underline">privacy policy</a>
             </div>
         </div>
     </footer>
 
-    <!-- LOGICA FORM -->
+    <!-- Google reCAPTCHA v3 -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdIz90sAAAAAExUjI4fDOf6NqHUD75e54Nib58n"></script>
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        document.querySelector('form').addEventListener('submit', function (e) {
             e.preventDefault();
-            
-            // Validazione base
-            const nome = document.getElementById('nome').value;
-            const email = document.getElementById('email').value;
-            const telefono = document.getElementById('telefono').value;
-            const citta = document.getElementById('citta').value;
+            const form = this;
 
-            if(nome && email && telefono && citta) {
-                // Qui si invierebbero i dati al server
-                // Per ora simuliamo il successo e reindirizziamo
-                window.location.href = 'thank-you.html';
-            } else {
-                alert('Per favore, compila tutti i campi obbligatori.');
-            }
+            grecaptcha.ready(function () {
+                grecaptcha.execute('6LdIz90sAAAAAExUjI4fDOf6NqHUD75e54Nib58n', { action: 'submit' }).then(function (token) {
+                    // Aggiungi il token al form e invia
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = 'recaptcha_token';
+                    input.value = token;
+                    form.appendChild(input);
+                    form.submit();
+                });
+            });
         });
     </script>
 </body>
+
 </html>
