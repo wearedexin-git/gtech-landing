@@ -69,6 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // 2. Inizializzazione PHPMailer
     $mail = new PHPMailer(true);
+    $mail->CharSet = PHPMailer::CHARSET_UTF8;
 
     try {
         // --- IMPOSTAZIONI SERVER SMTP ---
@@ -92,6 +93,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Subject = 'Nuova richiesta di assistenza impianti da: ' . $nome;
 
         $bodyAdmin = "
+            <!DOCTYPE html>
+            <html lang='it'>
+            <head><meta charset='UTF-8'></head>
+            <body>
             <h2 style='color: #1F201D; font-family: sans-serif;'>Nuovo messaggio dal sito web G-TECH</h2>
             <hr style='border: 1px solid #e0e0e0;' />
             <p><strong>Nome / Cognome:</strong> {$nome}</p>
@@ -99,6 +104,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <p><strong>Recapito telefonico:</strong> {$telefono}</p>
             <p><strong>E-mail:</strong> {$email}</p>
             <p><strong>Messaggio:</strong><br/>" . nl2br($messaggio) . "</p>
+            </body>
+            </html>
         ";
 
         $mail->Body = $bodyAdmin;
@@ -111,11 +118,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $mail->Subject = 'Conferma ricezione richiesta - G-TECH';
         $bodyUser = "
+            <!DOCTYPE html>
+            <html lang='it'>
+            <head><meta charset='UTF-8'></head>
+            <body>
             <h2 style='color: #1F201D; font-family: sans-serif;'>Grazie per averci contattato</h2>
             <p>Gentile <strong>{$nome}</strong>,</p>
             <p>La tua mail è stata inviata correttamente. Il nostro team ti risponderà il prima possibile.</p>
             <br>
             <p>Cordiali saluti,<br>Team G-TECH</p>
+            </body>
+            </html>
         ";
 
         $mail->Body = $bodyUser;
