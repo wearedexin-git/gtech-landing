@@ -13,11 +13,16 @@ require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
+// Inclusione del file di configurazione
+require_once 'config.php';
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // 0. Verifica reCAPTCHA v3
     $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
-    $recaptcha_secret = '6LdIz90sAAAAAEcoeE1fQXmlf9yuRAh4QadZV1Yk';
+    $recaptcha_secret = RECAPTCHA_SECRET_KEY;
+
     $recaptcha_response = isset($_POST['recaptcha_token']) ? $_POST['recaptcha_token'] : '';
 
     // Chiamata a Google tramite cURL (più affidabile di file_get_contents)
@@ -66,21 +71,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail = new PHPMailer(true);
 
     try {
-        // --- IMPOSTAZIONI SERVER SMTP (Parametri temporanei) ---
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';                     // Host del tuo server SMTP
-        $mail->SMTPAuth = true;                                   // Abilita autenticazione SMTP
-        $mail->Username = 'info@gtechsrl.it';                     // Username SMTP
-        $mail->Password = 'Gtech2025!!';                  // Password SMTP
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            // Crittografia (SSL/SMTPS)
-        $mail->Port = 465;                                    // Porta SMTP (es. 587 o 465)
-        // -------------------------------------------------------
+        // --- IMPOSTAZIONI SERVER SMTP ---
+        $mail->Host       = SMTP_HOST;
+        $mail->SMTPAuth   = SMTP_AUTH;
+        $mail->Username   = SMTP_USERNAME;
+        $mail->Password   = SMTP_PASSWORD;
+        $mail->SMTPSecure = (SMTP_SECURE == 'tls') ? PHPMailer::ENCRYPTION_STARTTLS : PHPMailer::ENCRYPTION_SMTPS;
+        $mail->Port       = SMTP_PORT;
+        // ---------------------------------
+
 
         // Mittente
-        $mail->setFrom('noreply@gtechsrl.it', 'G-TECH Sito Web'); // L'indirizzo da cui parte l'email
+        $mail->setFrom(EMAIL_FROM, EMAIL_FROM_NAME); // L'indirizzo da cui parte l'email
 
         // 1. INVIO NOTIFICA ALL'AMMINISTRATORE
-        $mail->addAddress('info@gtechsrl.it', 'G-TECH Info');
+        $mail->addAddress(EMAIL_ADMIN, EMAIL_ADMIN_NAME);
+
 
         $mail->isHTML(true);
         $mail->Subject = 'Nuova richiesta di assistenza impianti da: ' . $nome;
@@ -97,7 +103,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $mail->Body = $bodyAdmin;
         $mail->AltBody = strip_tags(str_replace("<br/>", "\n", $bodyAdmin));
-
         $mail->send(); // Invia la mail all'admin
 
         // 2. INVIO MAIL DI CONFERMA ALL'UTENTE
